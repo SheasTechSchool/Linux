@@ -1,0 +1,26 @@
+Download the latest version of Ubuntu Desktop: https://ubuntu.com/download/desktop
+
+Create a bootable USB from Windows using Rufus: https://github.com/pbatard/rufus
+
+Create a bootable USB using Linux (RPM/DEB) with a UI Tool: https://github.com/balena-io/etcher
+
+Create a bootable USB from the CLI without a UI: https://medium.com/@sheastech/how-to-create-a-bootable-chromeos-flex-usb-on-ubuntu-22-04lts-47d6551f2f86
+
+Install a firewall
+
+Install Google Chrome: https://www.google.com/chrome/ (NOTE: Do NOT use any 3rd parties. Download and install directly from Google Only)
+
+Install Visual Studio Code: Ubuntu Software Center or Snapcraft
+
+Install Wireshark: sudo apt-get install wireshark -y
+
+install Btop: sudo apt-get install btop -y
+
+Install Only Office: Ubuntu Software Center or Snapcraft
+
+Install a VPN (Enable Wireguard): https://medium.com/@sheastech/how-to-install-surfshark-on-ubuntu-22-04-lts-acd268ec68cc 
+
+Install ClamAV:
+sudo apt-get update && sudo apt-get install clamav clamav-daemon -y
+
+sudo apt-get install vim-full -y
