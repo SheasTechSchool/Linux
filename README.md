@@ -92,7 +92,7 @@ Welcome to the comprehensive Linux certification study repository! This resource
 3. **Lab Requirements**
    - Minimum 8GB RAM recommended
    - 50GB free disk space
-   - Virtualization software (VirtualBox/VMware/KVM)
+   - Virtualization software (Oracle VirtualBox or VMware Workstation - Personal Editions Only)
    - Base OS images (will be specified in each lab)
 
 ## 🔧 Lab Environment
