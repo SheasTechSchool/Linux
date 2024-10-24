@@ -85,7 +85,7 @@ Welcome to the comprehensive Linux certification study repository! This resource
    - Required software installation guides
 
 2. **Study Path**
-   - Recommended certification order: LFCS/RHCSA → RHCE → Ubuntu Essentials
+   - Recommended certification order: UCE/LFCS/RHCSA → RHCE 
    - Each certification directory contains its own learning path
    - Progressive labs from basic to advanced
 
