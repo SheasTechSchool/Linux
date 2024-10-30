@@ -1,0 +1,158 @@
+# LFCS Training Curriculum
+
+## Module 1: Essential Commands (25%)
+
+### File Management
+```bash
+# Basic Operations
+ls -la       # List files with details
+cp -r        # Recursive copy
+mv           # Move/rename
+rm -rf       # Remove recursively
+find / -name # Search files
+
+# Advanced File Operations
+tar -czf     # Create archive
+tar -xzf     # Extract archive
+gzip/gunzip  # Compress/decompress
+chmod/chown  # Permissions
+ln -s        # Symbolic links
+```
+
+### Text Processing
+```bash
+# Text Manipulation
+grep -r      # Recursive search
+sed 's/a/b/' # Stream editor
+awk '{print}' # Pattern scanning
+sort/uniq    # Sort and unique
+cut -d       # Cut by delimiter
+```
+
+## Module 2: Service Configuration (20%)
+
+### Network Services
+```bash
+# Network Configuration
+ip addr add
+ip route add
+hostnamectl set-hostname
+nmcli connection add
+systemctl start/stop
+
+# DNS Configuration
+vi /etc/resolv.conf
+vi /etc/hosts
+nslookup
+dig
+```
+
+### Web Services
+```bash
+# Apache/Nginx
+apt install apache2/nginx
+systemctl enable apache2
+vi /etc/apache2/apache2.conf
+ufw allow http/https
+```
+
+## Module 3: User and Group Management (15%)
+
+```bash
+# User Management
+useradd -m username
+usermod -aG groupname
+passwd username
+chage -l username
+
+# Group Operations
+groupadd groupname
+gpasswd -a user group
+groups username
+```
+
+## Module 4: Storage Management (15%)
+
+```bash
+# Disk Operations
+fdisk /dev/sdb
+parted /dev/sdb
+mkfs.ext4 /dev/sdb1
+
+# LVM
+pvcreate /dev/sdb1
+vgcreate vg_name /dev/sdb1
+lvcreate -L 10G vg_name
+```
+
+## Module 5: System Operations (25%)
+
+### Process Management
+```bash
+# Process Control
+ps aux
+top
+kill -9 PID
+nice/renice
+systemctl status
+```
+
+### Boot Management
+```bash
+# Boot Configuration
+vi /etc/default/grub
+update-grub
+systemd-analyze
+journalctl -xe
+```
+
+## Lab Requirements
+- Ubuntu Server 22.04 LTS
+- 2 VMs with 2GB RAM each
+- 20GB storage per VM
+- Network connectivity
+
+## Weekly Practice Schedule
+
+### Week 1-2: Essential Commands
+- File operations labs
+- Text processing exercises
+- Shell scripting practice
+
+### Week 3-4: Service Management
+- Network configuration
+- Web server setup
+- Service troubleshooting
+
+### Week 5-6: System Administration
+- User/group management
+- Storage configuration
+- Process control
+
+### Week 7-8: Advanced Topics
+- System boot procedures
+- Security configuration
+- Performance tuning
+
+## Exam Preparation
+```bash
+# Environment Setup
+apt update && apt upgrade
+apt install vim tmux git
+
+# Practice Areas
+- Service management
+- User administration
+- Storage configuration
+- Network setup
+- Security hardening
+```
+
+## Assessment Methods
+- Hands-on labs
+- Practice exams
+- Troubleshooting scenarios
+- Performance testing
+
+## License
+GNU General Public License v3.0
