@@ -1,58 +1,119 @@
-# Linux Foundation Certified System Administrator (LFCS) Exam Study Guide
+# LFCS Complete Exam Preparation Guide
 
-Welcome to the **Linux Foundation Certified System Administrator (LFCS)** exam study guide repository. This repository contains resources, study materials, and practice exercises designed to help students prepare for the LFCS exam.
+## Missing Critical Topics
 
-## Overview
+### 1. Advanced Storage Management
+- RAID Configuration
+```bash
+# Software RAID
+mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/sd[bcd]1
+mdadm --detail /dev/md0
+```
+- Encrypted Volumes
+```bash
+# LUKS Encryption
+cryptsetup luksFormat /dev/sdb1
+cryptsetup luksOpen /dev/sdb1 encrypted_volume
+```
+- Quota Management
+```bash
+# User/Group Quotas
+quotacheck -ugm /home
+edquota -u username
+```
 
-The **LFCS exam** is designed to test your knowledge of essential Linux system administration tasks, including managing system services, network configurations, user management, and file permissions. This guide provides an organized way to study for the exam, with resources tailored to each section of the exam objectives.
+### 2. Network Security
+- Firewall Configuration
+```bash
+# UFW Management
+ufw default deny incoming
+ufw allow ssh
+ufw enable
+```
+- SSH Hardening
+```bash
+# SSH Security
+vi /etc/ssh/sshd_config
+PermitRootLogin no
+PasswordAuthentication no
+```
 
-## Who is this for?
+### 3. Container Management
+```bash
+# LXC/LXD
+lxc launch ubuntu:20.04 container1
+lxc exec container1 bash
+lxc list
+```
 
-This repository is aimed at:
-- **Linux enthusiasts** looking to enhance their system administration skills.
-- **Students** preparing for the LFCS exam.
-- Anyone who wants to deepen their understanding of Linux system management.
+### 4. System Monitoring
+```bash
+# Performance Tools
+sar -u 1 10
+iostat -xz 1
+vmstat 1
+```
 
-## Repository Structure
+### 5. Task Automation
+```bash
+# Systemd Timers
+systemctl list-timers
+systemd-run --on-calendar="*:0/15" command
+```
 
-This repository is organized into the following sections:
+### 6. Backup Solutions
+```bash
+# Rsync Backups
+rsync -avz --progress /source /destination
+rsync -e ssh /data user@remote:/backup
+```
 
-- **Exam Overview**: Details about the exam format, duration, and grading.
-- **Study Resources**: Curated reading material, video links, and official documentation to guide you through each topic.
-- **Practice Exercises**: Hands-on lab exercises to help reinforce the key concepts.
-- **Tips and Tricks**: Helpful hints to manage time during the exam, study strategies, and common pitfalls to avoid.
+### 7. Network Troubleshooting
+```bash
+# Advanced Tools
+tcpdump -i any port 80
+netstat -tupln
+ss -tulpn
+```
 
-## LFCS Exam Objectives
+## Updated Directory Structure
+```
+/
+├── storage/
+│   ├── raid_setup/
+│   ├── encryption/
+│   └── quotas/
+├── security/
+│   ├── firewall/
+│   ├── ssh/
+│   └── audit/
+├── containers/
+│   ├── lxc/
+│   └── docker/
+├── monitoring/
+│   ├── performance/
+│   └── logging/
+└── automation/
+    ├── systemd/
+    └── cron/
+```
 
-The key areas covered by this guide include:
+## Additional Lab Requirements
+- Third VM for clustering exercises
+- Minimum 30GB storage for container practice
+- Multiple network interfaces
+- External storage for backup practice
 
-1. **System Management**:
-   - Package management (YUM, DNF, APT)
-   - Service management (systemd)
-   - User and group management
-   - Process management and scheduling (cron, at)
+## Updated Assessment Methods
+- Real-time troubleshooting scenarios
+- System recovery exercises
+- Performance optimization tasks
+- Security audit practice
+- Network debugging challenges
 
-2. **Storage Management**:
-   - Disk partitioning and formatting
-   - File systems (ext4, XFS)
-   - LVM (Logical Volume Manager)
-   - Mounting and managing file systems
-
-3. **Network Management**:
-   - Network interface configuration
-   - Network services (DNS, DHCP)
-   - Firewalls (iptables, firewalld)
-   - SSH configuration
-
-4. **Security**:
-   - File permissions and ownership
-   - SELinux and AppArmor
-   - User and group management
-   - Linux security best practices
-
-5. **Troubleshooting**:
-   - System logs and journald
-   - Boot issues and recovery
-   - Network troubleshooting
-   - Performance monitoring and optimization
-
+## Exam Tips
+- Time management (2 hours total)
+- Read all tasks before starting
+- Verify all changes persist after reboot
+- Document important commands
+- Practice without GUI tools
