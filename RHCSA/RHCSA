@@ -1,1 +1,340 @@
+## RHCSA Training v.05
 
+# RHCSA Training Course - Detailed Guide
+
+## Month 1: Foundations
+
+### Week 1-2: System Access and Basic Commands
+1. RHEL Installation
+   ```bash
+   # 1. Set up Virtual Machine
+   - RAM: 4GB
+   - Storage: 40GB
+   - CPU: 2 cores
+   - Network: Bridge adapter
+   
+   # 2. Boot from RHEL ISO
+   - Select language
+   - Configure time zone
+   - Set root password
+   - Create partitions
+     /boot - 1GB
+     swap - 4GB
+     / - remaining space
+   
+   # 3. Complete installation
+   - Reboot system
+   - Login as root
+   ```
+
+2. Basic Command Usage
+   ```bash
+   # File Operations
+   ls -la                     # List files with details
+   pwd                        # Show current directory
+   cd /path/to/dir           # Change directory
+   cp source dest            # Copy files
+   mv source dest            # Move files
+   rm filename               # Remove files
+   mkdir dirname             # Create directory
+   
+   # Text Processing
+   cat filename              # View file content
+   less filename             # Page through file
+   grep pattern file         # Search for pattern
+   head/tail filename        # View start/end of file
+   
+   # System Information
+   uname -a                  # System info
+   hostname                  # Show hostname
+   date                      # Show date/time
+   whoami                    # Show current user
+   ```
+
+### Week 3-4: User Administration
+1. User Management
+   ```bash
+   # Create Users
+   useradd username
+   passwd username
+   
+   # Modify Users
+   usermod -aG groupname username
+   chage -l username
+   
+   # Delete Users
+   userdel -r username
+   
+   # Group Management
+   groupadd groupname
+   groupmod -n newname oldname
+   groupdel groupname
+   ```
+
+2. Password Policies
+   ```bash
+   # Configure PAM
+   vim /etc/security/pwquality.conf
+   minlen = 12
+   minclass = 4
+   
+   # Set Password Aging
+   vim /etc/login.defs
+   PASS_MAX_DAYS 90
+   PASS_MIN_DAYS 7
+   PASS_WARN_AGE 7
+   ```
+
+3. Sudo Configuration
+   ```bash
+   # Edit sudoers
+   visudo
+   
+   # Add user privileges
+   username ALL=(ALL) ALL
+   
+   # Add group privileges
+   %groupname ALL=(ALL) ALL
+   ```
+
+## Month 2: System Administration
+
+### Week 1-2: Service Management
+1. Systemd Services
+   ```bash
+   # Service Control
+   systemctl start service
+   systemctl stop service
+   systemctl restart service
+   systemctl status service
+   
+   # Enable/Disable at Boot
+   systemctl enable service
+   systemctl disable service
+   
+   # View Service Logs
+   journalctl -u service
+   ```
+
+2. Network Configuration
+   ```bash
+   # Configure Network Interface
+   nmcli con add type ethernet con-name eth0 ifname eth0
+   nmcli con mod eth0 ipv4.addresses 192.168.1.10/24
+   nmcli con mod eth0 ipv4.gateway 192.168.1.1
+   nmcli con mod eth0 ipv4.dns "8.8.8.8"
+   nmcli con up eth0
+   
+   # Verify Configuration
+   ip addr show
+   ip route show
+   cat /etc/resolv.conf
+   ```
+
+### Week 3-4: Storage Management
+1. Disk Partitioning
+   ```bash
+   # Create Partitions
+   fdisk /dev/sdb
+   n    # new partition
+   p    # primary
+   w    # write changes
+   
+   # Format Filesystem
+   mkfs.xfs /dev/sdb1
+   mkfs.ext4 /dev/sdb2
+   ```
+
+2. LVM Configuration
+   ```bash
+   # Create Physical Volume
+   pvcreate /dev/sdb1
+   
+   # Create Volume Group
+   vgcreate vg_name /dev/sdb1
+   
+   # Create Logical Volume
+   lvcreate -L 10G -n lv_name vg_name
+   
+   # Format and Mount
+   mkfs.xfs /dev/vg_name/lv_name
+   mount /dev/vg_name/lv_name /mnt
+   ```
+
+## Month 3: Advanced Administration
+
+### Week 1-2: Security Implementation
+1. SELinux Configuration
+   ```bash
+   # Check Status
+   getenforce
+   
+   # Set Mode
+   setenforce 1
+   
+   # Modify Context
+   semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+   restorecon -Rv /web
+   
+   # View Logs
+   ausearch -m AVC
+   ```
+
+2. Firewall Management
+   ```bash
+   # Configure Firewall
+   firewall-cmd --permanent --add-service=http
+   firewall-cmd --permanent --add-port=8080/tcp
+   firewall-cmd --reload
+   
+   # Verify Rules
+   firewall-cmd --list-all
+   ```
+
+### Week 3-4: Container Management
+1. Podman Setup
+   ```bash
+   # Install Podman
+   dnf install podman
+   
+   # Pull Image
+   podman pull fedora
+   
+   # Run Container
+   podman run -it fedora bash
+   
+   # Container Management
+   podman ps
+   podman images
+   podman stop container_id
+   podman rm container_id
+   ```
+
+## Month 4: Exam Preparation
+
+### Week 1-2: System Recovery
+1. Password Recovery
+   ```bash
+   # Boot to Emergency Mode
+   # At GRUB menu:
+   - Press 'e'
+   - Find linux line
+   - Add 'rd.break'
+   - Ctrl-x to boot
+   
+   # Reset Root Password
+   mount -o remount,rw /sysroot
+   chroot /sysroot
+   passwd root
+   touch /.autorelabel
+   exit
+   reboot
+   ```
+
+2. System Rescue
+   ```bash
+   # Boot from Installation Media
+   # Select Troubleshooting
+   # Select Rescue System
+   
+   # Mount System
+   mount /dev/sda1 /mnt
+   chroot /mnt
+   
+   # Fix Issues
+   grub2-mkconfig -o /boot/grub2/grub.cfg
+   ```
+
+### Week 3-4: Practice Exams
+1. Exam Environment Setup
+   ```bash
+   # Prepare VMs
+   - Create clean snapshots
+   - Test network connectivity
+   - Verify storage configuration
+   
+   # Time Management
+   - 3 hours duration
+   - Review all questions first
+   - Prioritize high-point tasks
+   ```
+
+2. Common Scenarios
+   ```bash
+   # User Management
+   - Create users with specific requirements
+   - Set password policies
+   - Configure sudo access
+   
+   # Storage Management
+   - Create and manage LVM
+   - Configure Stratis storage
+   - Mount NFS shares
+   
+   # Service Configuration
+   - Configure network services
+   - Manage SELinux contexts
+   - Configure firewall rules
+   ```
+
+## Assessment Methods
+1. Weekly Labs
+   ```bash
+   # Lab Structure
+   - Pre-lab preparation
+   - Task completion
+   - Post-lab verification
+   - Documentation submission
+   ```
+
+2. Module Projects
+   ```bash
+   # Project Components
+   - Requirements analysis
+   - Implementation plan
+   - Execution
+   - Testing
+   - Documentation
+   ```
+
+3. Practice Exams
+   ```bash
+   # Exam Format
+   - Timed exercises
+   - Performance-based tasks
+   - Troubleshooting scenarios
+   - System recovery
+   ```
+
+## Lab Environment Requirements
+1. Hardware Setup
+   ```bash
+   # Minimum Specifications
+   - CPU: 4 cores
+   - RAM: 8GB
+   - Storage: 100GB
+   - Network: 1Gbps
+   ```
+
+2. Software Requirements
+   ```bash
+   # Required Packages
+   dnf install \
+       vim \
+       tmux \
+       wget \
+       curl \
+       tar \
+       git \
+       podman \
+       buildah
+   ```
+
+3. Network Configuration
+   ```bash
+   # Network Setup
+   - Configure DNS
+   - Set static IP
+   - Configure routing
+   - Test connectivity
+   ```
