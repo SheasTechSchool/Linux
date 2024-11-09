@@ -24,3 +24,51 @@ Install ClamAV:
 sudo apt-get update && sudo apt-get install clamav clamav-daemon -y
 
 sudo apt-get install vim-full -y
+
+sudo enable ufw
+sudo ufw enable
+sudo apt install curl -y
+sudo apt update
+sudo apt-get install curl git gcc-12 libgcc-12-dev build-essential 
+sudo apt install build-essential linux-headers-$(uname -r)
+sudo apt-get install wget -y
+sudo snap remove firefox -y
+sudo apt-get remove firefox -y
+sudo apt autoclean
+sudo apt-get install gnome-tweaks
+
+Papirus Icon Set
+https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/
+sudo add-apt-repository ppa:papirus/papirus
+sudo apt-get update
+sudo apt-get install papirus-icon-theme
+
+curl -f https://downloads.surfshark.com/linux/debian-install.sh --output surfshark-install.sh #gets the installation script
+surfshark-install.sh #shows script's content
+sh surfshark-install.sh #installs surfshark
+curl -f https://downloads.surfshark.com/linux/debian-install.sh --output surfshark-install.sh #gets the installation script
+cat surfshark-install.sh #shows script's content
+sh surfshark-install.sh #installs surfshark
+
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install ffmpeg obs-studio
+
+Virtualbox - Secure Boot
+Clear the secure boot keys inside of the BIOS to make sure that you are starting from scratch
+sudo apt install mokutil
+
+Create a MOK Key:
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.key -out MOK.crt -nodes -days 3650 -subj "/CN=Shea/"
+openssl x509 -in MOK.crt -out MOK.cer -outform DER
+
+sudo mokutil -i MOK.cer
+
+Reboot the Machine
+sudo mokutil --disable-validation
+
+Reboot
+sudo modprobe vboxdrv
+
+VMware Workstation 17 - Secure Boot Enabled
+https://thelinuxforum.com/articles/968-how-to-sign-vmware-workstation-pro-kernel-modules-on-uefi-secure-boot-enabled-linux-systems
